@@ -1,0 +1,14 @@
+@startuml
+state PongStateMachine {
+    [*] --> Init
+    Init : on entry / stop all motors
+    Init --> Standby : start button / start timer
+    Standby --> Advancing : timer expired
+    Advancing : on entry / move forward
+    Advancing --> Turning : boundary on left / \nrotate 90 - 180 degrees
+    Advancing --> Turning : bondary on right / \nrotate -90 - -180 degrees
+    Advancing --> Turning : boundary ahead / \nrotate 90 - 270 degrees
+    Turning --> Advancing : turn completed 
+}
+PongStateMachine -> Init : reset button
+@enduml
