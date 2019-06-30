@@ -8,8 +8,6 @@
 
 #include "pongstate.h"
 
-extern StandbyState standby;
-
 class InitState : public PongState
 {
 public:

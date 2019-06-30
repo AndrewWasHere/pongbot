@@ -13,13 +13,13 @@ StandbyState::StandbyState(State * parent, IRobot & robot) :
     PongState("standby", parent, robot)
 {}
 
-Result StandbyState::on_entry() override
+Result StandbyState::on_entry() 
 {
     m_robot.start_timer(5000);
     return OK;
 }
 
-bool StandbyState::on_event(TimerEvent & event) override
+bool StandbyState::on_event(TimerEvent & event)
 {
     transition_to_state(&advancing);
 

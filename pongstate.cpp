@@ -42,7 +42,7 @@ bool PongState::on_event(Event & event)
             handled = on_event(static_cast<BoundaryRightEvent &>(event));
             break;
         case ENCODER_EVENT:
-            handled = on_event(static_cast<EncoderEvent>(event));
+            handled = on_event(static_cast<EncoderEvent &>(event));
             break;
         default:
             break;

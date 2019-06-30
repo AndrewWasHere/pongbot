@@ -13,7 +13,7 @@ TurningState::TurningState(State * parent, IRobot & robot) :
     PongState("turn", parent, robot)
 {}
 
-bool TurningState::on_event(EncoderEvent & event) override
+bool TurningState::on_event(EncoderEvent & event) 
 {
     transition_to_state(&advancing);
 

@@ -5,9 +5,9 @@ state PongStateMachine {
     Standby : on entry / start timer(5000 ms)
     Standby --> Advancing : timer expired
     Advancing : on entry / move forward
-    Advancing --> Turning : boundary on left / \nrotate 90 - 180 degrees
-    Advancing --> Turning : bondary on right / \nrotate -90 - -180 degrees
-    Advancing --> Turning : boundary ahead / \nrotate 90 - 270 degrees
+    Advancing --> Turning : boundary on left / \nturn right 90 - 180 degrees, \nset encoder event
+    Advancing --> Turning : bondary on right / \nturn left -90 - -180 degrees, \nset encoder event
+    Advancing --> Turning : boundary ahead / \nturn right or left 90 - 270 degrees, \nset encoder event
     Turning --> Advancing : encoder
 }
 @enduml

@@ -13,12 +13,12 @@ AdvancingState::AdvancingState(State * parent, IRobot & robot) :
     PongState("adv", parent, robot)
 {}
 
-Result oAdvancingState::n_entry() override
+Result AdvancingState::on_entry() 
 {
     m_robot.move_forward();
 }
 
-bool AdvancingState::on_event(BoundaryAheadEvent & event) override
+bool AdvancingState::on_event(BoundaryAheadEvent & event) 
 {
     m_robot.move_stop();
     m_robot.turn_right(180);
@@ -28,7 +28,7 @@ bool AdvancingState::on_event(BoundaryAheadEvent & event) override
     return true;
 }
 
-bool AdvancingState::on_event(BoundaryLeftEvent & event) override
+bool AdvancingState::on_event(BoundaryLeftEvent & event) 
 {
     m_robot.move_stop();
     m_robot.turn_right(90);
@@ -38,7 +38,7 @@ bool AdvancingState::on_event(BoundaryLeftEvent & event) override
     return true;
 }
 
-bool AdvancingState::on_event(BoundaryRightEvent & event) override
+bool AdvancingState::on_event(BoundaryRightEvent & event) 
 {
     m_robot.move_stop();
     m_robot.turn_left(90);
