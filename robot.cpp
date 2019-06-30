@@ -42,10 +42,18 @@ void IRobot::generate_events(EventQueue & q)
     }
 }
 
+//
+// State Machine Interfaces
+//
 void IRobot::display(char const * msg)
 {
     lcd.clear();
     lcd.write(msg, strlen(msg));
+}
+
+void IRobot::cancel_timer()
+{
+    end_time = 0;
 }
 
 void IRobot::start_timer(unsigned long timeout)
@@ -53,6 +61,29 @@ void IRobot::start_timer(unsigned long timeout)
     end_time = millis() + timeout;
 }
 
+void IRobot::move_forward()
+{
+    motors.setSpeeds(speed, speed);
+}
+
+void IRobot::move_stop()
+{
+    motors.setSpeeds(0, 0);
+}
+
+void IRobot::turn_left(int degrees)
+{
+    motors.setSpeeds(-speed, speed);
+}
+
+void IRobot::turn_right(int degrees)
+{
+    motors.setSpeeds(speed, -speed);
+}
+
+//
+// Private methods.
+//
 Boundary IRobot::boundary_detect()
 {
     // below threshold => boundary.
