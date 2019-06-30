@@ -21,7 +21,17 @@ Result AdvancingState::on_entry()
 bool AdvancingState::on_event(BoundaryAheadEvent & event) 
 {
     m_robot.move_stop();
-    m_robot.turn_right(180);
+
+    long degrees = 90 + (rand() % 181);
+    if (rand() % 2)
+    {
+        m_robot.turn_right(degrees);
+    }
+    else
+    {
+        m_robot.turn_left(degrees);
+    }
+    
 
     transition_to_state(&turning);
 
@@ -31,7 +41,7 @@ bool AdvancingState::on_event(BoundaryAheadEvent & event)
 bool AdvancingState::on_event(BoundaryLeftEvent & event) 
 {
     m_robot.move_stop();
-    m_robot.turn_right(90);
+    m_robot.turn_right(90 + (rand() % 91));
 
     transition_to_state(&turning);
 
@@ -41,7 +51,7 @@ bool AdvancingState::on_event(BoundaryLeftEvent & event)
 bool AdvancingState::on_event(BoundaryRightEvent & event) 
 {
     m_robot.move_stop();
-    m_robot.turn_left(90);
+    m_robot.turn_left(90 + (rand() % 91));
 
     transition_to_state(&turning);
 
