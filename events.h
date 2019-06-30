@@ -5,46 +5,39 @@
 using namespace statemachine;
 enum PongEvent
 {
-    START,
-    RESET,
-    TIMER,
-    BOUNDARY_AHEAD,
-    BOUNDARY_LEFT,
-    BOUNDARY_RIGHT
+    START_EVENT,
+    TIMER_EVENT,
+    BOUNDARY_AHEAD_EVENT,
+    BOUNDARY_LEFT_EVENT,
+    BOUNDARY_RIGHT_EVENT
 };
 
 class StartButtonEvent : public Event
 {
 public:
-    StartButtonEvent() : Event(START, "start") {}
-};
-
-class ResetButtonEvent : public Event
-{
-public:
-    ResetButtonEvent() : Event(RESET, "reset") {}
+    StartButtonEvent() : Event(START_EVENT, "start") {}
 };
 
 class TimerEvent : public Event
 {
 public:
-    TimerEvent() : Event(TIMER, "timer") {}
+    TimerEvent() : Event(TIMER_EVENT, "timer") {}
 };
 
 class BoundaryAheadEvent : public Event
 {
 public:
-    BoundaryAheadEvent() : Event(BOUNDARY_AHEAD, "bdy-a") {}
+    BoundaryAheadEvent() : Event(BOUNDARY_AHEAD_EVENT, "bdy-a") {}
 };
 
 class BoundaryLeftEvent : public Event
 {
 public:
-    BoundaryLeftEvent() : Event(BOUNDARY_LEFT, "bdy-l") {}
+    BoundaryLeftEvent() : Event(BOUNDARY_LEFT_EVENT, "bdy-l") {}
 };
 
 class BoundaryRightEvent : public Event
 {
 public:
-    BoundaryRightEvent() : Event(BOUNDARY_RIGHT, "bdy-r") {}
+    BoundaryRightEvent() : Event(BOUNDARY_RIGHT_EVENT, "bdy-r") {}
 };

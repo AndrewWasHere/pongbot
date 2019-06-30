@@ -88,10 +88,22 @@ namespace statemachine
         return active_state()->m_name;
     }
 
-    State * State::active_state()
+    State * State::root_state()
     {
         State * s = this;
-        while (s->m_active_state) {
+        while (s->m_parent_state)
+        {
+            s = s->m_parent_state;
+        }
+
+        return s;
+    }
+
+    State * State::active_state()
+    {
+        State * s = root_state();
+        while (s->m_active_state) 
+        {
             s = s->m_active_state;
         }
 

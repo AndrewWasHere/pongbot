@@ -49,7 +49,7 @@ namespace statemachine
         /*
          * Transition to new state.
          */
-        Result transition_to_state(State * state);
+        virtual Result transition_to_state(State * state);
 
         /*
          * Transition to state history.
@@ -103,6 +103,11 @@ namespace statemachine
          * function and return `true`.
          */
         virtual bool on_event(Event & event);
+
+        /*
+         * Returns the root (machine) state.
+         */
+        State * root_state();
 
         /*
          * Returns the current active state.

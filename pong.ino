@@ -1,3 +1,5 @@
+#include <Wire.h>
+#include <Zumo32U4.h>
 #include "advancingstate.h"
 #include "events.h"
 #include "eventqueue.h"
@@ -12,14 +14,13 @@ IRobot robot;
 
 // State machine.
 PongStateMachine machine(nullptr, robot);
-InitState initalized(&machine, robot);
+InitState initialized(&machine, robot);
 StandbyState standby(&machine, robot);
 AdvancingState advancing(&machine, robot);
 TurningState turning(&machine, robot);
 
 // Events.
 StartButtonEvent start_event;
-ResetButtonEvent reset_event;
 TimerEvent timer_event;
 BoundaryAheadEvent boundary_ahead_event;
 BoundaryLeftEvent boundary_left_event;
@@ -29,12 +30,17 @@ EventQueue queue;
 
 void setup()
 {
+    // Initialize robot.
+    robot.setup();
 
+    // Initialize state machine.
+    machine.transition_to_state(&machine);
 }
 
 void loop()
 {
     // Read sensors, and generate events.
+    robot.generate_events(queue);
 
     // Process events.
     while (!queue.empty())
