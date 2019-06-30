@@ -33,8 +33,8 @@ public:
     void start_timer(unsigned long timeout);
     void move_forward();
     void move_stop();
-    void turn_left(int degrees);
-    void turn_right(int degrees);
+    void turn_left(long degrees);
+    void turn_right(long degrees);
 
 private:
     int const speed = 150;
@@ -82,4 +82,6 @@ private:
 
     // Timer "register". Use `start_timer()` to set.
     unsigned long end_time;
+    // Encoder "register". Use `turn_left()` or `turn_right()` to set.
+    long encoder_count;
 };

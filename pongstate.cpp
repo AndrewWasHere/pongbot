@@ -41,6 +41,9 @@ bool PongState::on_event(Event & event)
         case BOUNDARY_RIGHT_EVENT:
             handled = on_event(static_cast<BoundaryRightEvent &>(event));
             break;
+        case ENCODER_EVENT:
+            handled = on_event(static_cast<EncoderEvent>(event));
+            break;
         default:
             break;
     }
@@ -70,4 +73,9 @@ bool PongState::on_event(BoundaryLeftEvent & event)
 bool PongState::on_event(BoundaryRightEvent & event) 
 { 
     return false; 
+}
+
+bool PongState::on_event(EncoderEvent & event)
+{
+    return false;
 }

@@ -8,10 +8,14 @@
 
 #include "pongstate.h"
 
+class AdvancingState;
+extern AdvancingState advancing;
+
 class TurningState : public PongState
 {
 public:
-    TurningState(State * parent, IRobot & robot) :
-        PongState("turn", parent, robot)
-    {}
+    TurningState(State * parent, IRobot & robot);
+
+protected:
+    bool on_event(EncoderEvent & event) override;
 };

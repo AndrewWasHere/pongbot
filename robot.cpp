@@ -11,10 +11,12 @@ extern TimerEvent timer_event;
 extern BoundaryAheadEvent boundary_ahead_event;
 extern BoundaryLeftEvent boundary_left_event;
 extern BoundaryRightEvent boundary_right_event;
+extern EncoderEvent encoder_event;
 
 void IRobot::setup()
 {
     end_time = 0;
+    encoder_count = 0;
     boundary_sensor.initThreeSensors();
 }
 
@@ -45,6 +47,13 @@ void IRobot::generate_events(EventQueue & q)
     case BOUNDARY_RIGHT:
         q.push(&boundary_right_event);
         break;
+    }
+
+    // Check encoders.
+    if (encoder_count && abs(encoders.getCountsLeft()) > encoder_count)
+    {
+        q.push(&encoder_event);
+        encoder_count = 0;
     }
 }
 
@@ -77,13 +86,17 @@ void IRobot::move_stop()
     motors.setSpeeds(0, 0);
 }
 
-void IRobot::turn_left(int degrees)
+void IRobot::turn_left(long degrees)
 {
+    encoder_count = degrees * encoder_counts_per_degree_rotation;
+    encoders.getCountsAndResetLeft();
     motors.setSpeeds(-speed, speed);
 }
 
-void IRobot::turn_right(int degrees)
+void IRobot::turn_right(long degrees)
 {
+    encoder_count = degrees * encoder_counts_per_degree_rotation;
+    encoders.getCountsAndResetLeft();
     motors.setSpeeds(speed, -speed);
 }
 

@@ -15,7 +15,8 @@ enum PongEvent
     TIMER_EVENT,
     BOUNDARY_AHEAD_EVENT,
     BOUNDARY_LEFT_EVENT,
-    BOUNDARY_RIGHT_EVENT
+    BOUNDARY_RIGHT_EVENT,
+    ENCODER_EVENT
 };
 
 class StartButtonEvent : public Event
@@ -46,4 +47,10 @@ class BoundaryRightEvent : public Event
 {
 public:
     BoundaryRightEvent() : Event(BOUNDARY_RIGHT_EVENT, "bdy-r") {}
+};
+
+class EncoderEvent : public Event
+{
+public:
+    EncoderEvent() : Event(ENCODER_EVENT, "enc") {}
 };

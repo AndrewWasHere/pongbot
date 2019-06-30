@@ -11,13 +11,11 @@
 class AdvancingState : public PongState
 {
 public:
-    AdvancingState(State * parent, IRobot & robot) :
-        PongState("adv", parent, robot)
-    {}
+    AdvancingState(State * parent, IRobot & robot);
 
 protected:
-    Result on_entry() override
-    {
-        m_robot.turn_left(0);
-    }
+    Result on_entry() override;
+    bool on_event(BoundaryAheadEvent & event) override;
+    bool on_event(BoundaryLeftEvent & event) override;
+    bool on_event(BoundaryRightEvent & event) override;
 };

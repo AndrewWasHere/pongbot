@@ -25,6 +25,7 @@ protected:
     virtual bool on_event(BoundaryAheadEvent & event);
     virtual bool on_event(BoundaryLeftEvent & event);
     virtual bool on_event(BoundaryRightEvent & event);
+    virtual bool on_event(EncoderEvent & event);
     
     IRobot & m_robot;
 };
