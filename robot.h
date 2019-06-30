@@ -1,3 +1,9 @@
+/*
+    Copyright 2019, Andrew Lin.
+
+    This source code is released under the 3-Clause BSD license. See 
+    LICENSE.txt, or https://opensource.org/licenses/BSD-3-Clause.
+ */
 #pragma once
 
 #include <Wire.h>
@@ -32,9 +38,39 @@ public:
 
 private:
     int const speed = 150;
-    // Change this to match the gear ratio of your Zumo.
-    long int const gear_ratio = 50;
-    long int const encoder_count_per_motor_revolution = 12;
+    // Change the following value to match the gear ratio of your Zumo.
+    // The formula derivation is as follows:
+    //
+    // The circumference of the circle enscribed by a robot spinning in place
+    // (one tread going forward, one tread going backwards at the same speed)
+    // is
+    //    Cr = r * pi
+    // 
+    // The distrance travelled in one wheel rotation is
+    //    Cw = w * pi
+    //
+    // The number of encoder counts per wheel revolution is
+    //    Ew = g * e
+    //
+    // The number of encoder counts in 1 degree of robot rotation is
+    //    Er = ((Cr / Cw) * Ew) / 360
+    //    
+    // Where
+    //    g = gear ratio of the Zumo.
+    //        (ie 50 for 50:1, 75 for 75:1, 100 for 100:1)
+    //    e = encoder counts / motor revolution.
+    //        This is 12, per the documentation.
+    //    r = robot width, center of tread to center of tread.
+    //        Measured to be 88 mm.
+    //    w = diameter of wheel, with tread attached.
+    //        Measured to be 38 mm.
+    //
+    // Motor Gearing  Encoder counts per degree rotation 
+    // =============  ================================== 
+    //          50:1  4                                  
+    //          75:1  6                                  
+    //         100:1  8                                  
+    long const encoder_counts_per_degree_rotation = 4;
 
     Boundary boundary_detect();
 
