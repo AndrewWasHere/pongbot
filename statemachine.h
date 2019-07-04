@@ -8,6 +8,9 @@
 
 namespace statemachine
 {
+    /*
+     * Return codes for State interfaces.
+     */
     enum Result
     {
         OK,
@@ -16,7 +19,7 @@ namespace statemachine
     };
 
     /*
-     * Base class for events to be processed by state machine states.
+     * Base class for events that are to be processed by state machine states.
      */
     class Event
     {

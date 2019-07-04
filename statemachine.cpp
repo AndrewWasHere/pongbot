@@ -132,14 +132,22 @@ namespace statemachine
 
     State * State::find_common_parent(State * other)
     {
-        for (State * l = this; l; l = l->m_parent_state)
+        if (other)
         {
-            for (State * r = other; r; r = r->m_parent_state)
+            for (State * l = this; l; l = l->m_parent_state)
             {
-                if (r == l)
+                for
+                (
+                    State * r = other->m_parent_state;
+                    r;
+                    r = r->m_parent_state
+                )
                 {
-                    // Common parent found.
-                    return r;
+                    if (r == l)
+                    {
+                        // Common parent found.
+                        return r;
+                    }
                 }
             }
         }
